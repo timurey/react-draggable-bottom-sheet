@@ -97,7 +97,7 @@ const BottomSheet = ({
 
   useEffect(() => {
     if (isOpen) lockBodyScroll();
-    else unlockBodyScroll();
+    else setTimeout(() => { unlockBodyScroll() }, 300); //.BottomSheet--closed transition-delay value
   }, [isOpen]);
 
   const onDragging = useCallback<DraggableEventHandler>(
