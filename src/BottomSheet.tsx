@@ -176,7 +176,7 @@ const BottomSheet = ({
             )}
             style={styles.window?.wrap}
           >
-            {!modalOnDesktop && !isDesktop && (
+            {!(modalOnDesktop && isDesktop) && (
               <DragIndicator
                 className={classNames?.dragIndicator}
                 style={styles.dragIndicator}
