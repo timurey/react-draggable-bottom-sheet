@@ -4,7 +4,8 @@
   "description": "A React component with the bottom sheet experience we have for native mobile applications, but for web ✨",
   "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "build": "rollup -c",
