@@ -57,9 +57,9 @@ interface BottomSheetProps {
   };
 }
 
-const body = document.querySelector("body") as HTMLElement;
 
 const UnderBody = ({ children }: { children: React.ReactNode }) => {
+  const body = document.querySelector("body") as HTMLElement;
   return createPortal(children, body);
 };
 

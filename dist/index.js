@@ -112,9 +112,9 @@ function styleInject(css, ref) {
 var css_248z = ".BottomSheet {\n  position: fixed;\n  display: flex;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 20;\n  transition-property: opacity;\n  justify-content: center;\n  align-items: flex-end;\n  color: #0f0e17;\n}\n\n.BottomSheet--modalOnDesktop {\n  align-items: center;\n}\n\n.BottomSheet--modalOnDesktop .BottomSheet__draggable {\n  pointer-events: none;\n}\n\n.BottomSheet--modalOnDesktop .BottomSheet__window {\n  pointer-events: all;\n}\n\n.BottomSheet--open {\n  pointer-events: auto;\n  opacity: 1;\n}\n\n.BottomSheet--closed {\n  transition-delay: 300ms;\n  opacity: 0;\n}\n\n.BottomSheet--closed,\n.BottomSheet--closed.BottomSheet--modalOnDesktop .BottomSheet__window,\n.BottomSheet--closed * {\n  pointer-events: none;\n}\n\n.BottomSheet__backdrop {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 20;\n  transition-property: opacity;\n  transition-duration: 500ms;\n  pointer-events: none;\n  opacity: 0;\n}\n\n.BottomSheet--open .BottomSheet__backdrop {\n  pointer-events: auto;\n  opacity: 1;\n  background-color: #000;\n  opacity: 0.7;\n}\n\n.BottomSheet__draggable {\n  transition-property: transform;\n  transition-duration: 300ms;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  width: 100%;\n  max-width: 72rem;\n}\n\n.BottomSheet__window-wrap {\n  display: flex;\n  position: relative;\n  z-index: 40;\n  flex-direction: column;\n  max-height: 100vh;\n  background-color: #fff;\n}\n\n.BottomSheet__drag-indicator-wrap {\n  display: flex;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  justify-content: center;\n  align-items: center;\n}\n\n.BottomSheet__drag-indicator {\n  width: 2.5rem;\n  height: 2px;\n  background-color: #0f0e17;\n}\n\n.BottomSheet__window {\n  overflow-y: auto;\n}\n\n.BottomSheet__window::-webkit-scrollbar {\n  display: none;\n}\n";
 styleInject(css_248z);
 
-var body = document.querySelector("body");
 var UnderBody = function (_a) {
     var children = _a.children;
+    var body = document.querySelector("body");
     return createPortal(children, body);
 };
 var BottomSheet = function (_a) {
