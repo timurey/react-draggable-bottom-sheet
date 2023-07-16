@@ -167,6 +167,8 @@ var BottomSheet = function (_a) {
             y: isOpen ? 0 : (rect === null || rect === void 0 ? void 0 : rect.height) || 10000,
         };
     }, [isOpen, rect]);
+    if (!isOpen)
+        return null;
     return (React.createElement(UnderBody, null,
         React.createElement("div", { className: clsx("BottomSheet", isOpen ? "BottomSheet--open" : "BottomSheet--closed", modalOnDesktop && isDesktop && "BottomSheet--modalOnDesktop", classNames.bottomSheet), style: styles.bottomSheet },
             React.createElement(Backdrop$1, { onClick: function (event) {

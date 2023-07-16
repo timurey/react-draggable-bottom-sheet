@@ -131,6 +131,8 @@ const BottomSheet = ({
     };
   }, [isOpen, rect]);
 
+  if (!isOpen) return null
+
   return (
     <UnderBody>
       <div

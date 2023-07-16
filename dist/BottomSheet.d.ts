@@ -39,5 +39,5 @@ interface BottomSheetProps {
         };
     };
 }
-declare const _default: React.MemoExoticComponent<({ children, isOpen, close, onBackdropClick, onDrag, onStart, onMouseDown, modalOnDesktop, desktopBreakpoint, styles, disabled, classNames, }: BottomSheetProps) => JSX.Element>;
+declare const _default: React.MemoExoticComponent<({ children, isOpen, close, onBackdropClick, onDrag, onStart, onMouseDown, modalOnDesktop, desktopBreakpoint, styles, disabled, classNames, }: BottomSheetProps) => JSX.Element | null>;
 export default _default;
