@@ -63,6 +63,15 @@ const UnderBody = ({ children }: { children: React.ReactNode }) => {
   return createPortal(children, body);
 };
 
+
+function useIsServer () {
+  const [isServer, setIsServer] = useState(true)
+  useEffect(() => {
+    setIsServer(false)
+  }, [])
+  return isServer
+}
+
 const BottomSheet = ({
   children,
   isOpen,
@@ -131,7 +140,7 @@ const BottomSheet = ({
     };
   }, [isOpen, rect]);
 
-  if (!isOpen) return null
+  if (useIsServer()) return null
 
   return (
     <UnderBody>

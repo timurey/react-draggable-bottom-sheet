@@ -19,71 +19,71 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
-var __assign = function() {
-    __assign = Object.assign || function __assign(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = function () {
+  __assign = Object.assign || function __assign(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+  };
+  return __assign.apply(this, arguments);
 };
 
 var lockBodyScroll = function () {
-    var _a;
-    var scrollingElement = document.scrollingElement || document.body;
-    var currentPadding = parseInt((_a = scrollingElement.style) === null || _a === void 0 ? void 0 : _a.paddingRight) || 0;
-    var currentScrollbarWidth = getScrollbarWidth();
-    scrollingElement.style.paddingRight = "".concat(currentPadding + currentScrollbarWidth, "px");
-    scrollingElement.style.overflow = "hidden";
+  var _a;
+  var scrollingElement = document.scrollingElement || document.body;
+  var currentPadding = parseInt((_a = scrollingElement.style) === null || _a === void 0 ? void 0 : _a.paddingRight) || 0;
+  var currentScrollbarWidth = getScrollbarWidth();
+  scrollingElement.style.paddingRight = "".concat(currentPadding + currentScrollbarWidth, "px");
+  scrollingElement.style.overflow = "hidden";
 };
 var unlockBodyScroll = function () {
-    var _a;
-    var scrollingElement = document.scrollingElement || document.body;
-    var currentScrollbarWidth = getScrollbarWidth();
-    var currentPadding = parseInt((_a = scrollingElement.style) === null || _a === void 0 ? void 0 : _a.paddingRight) || currentScrollbarWidth;
-    scrollingElement.style.paddingRight = "".concat(currentPadding - currentScrollbarWidth, "px");
-    scrollingElement.style.overflow = "auto";
+  var _a;
+  var scrollingElement = document.scrollingElement || document.body;
+  var currentScrollbarWidth = getScrollbarWidth();
+  var currentPadding = parseInt((_a = scrollingElement.style) === null || _a === void 0 ? void 0 : _a.paddingRight) || currentScrollbarWidth;
+  scrollingElement.style.paddingRight = "".concat(currentPadding - currentScrollbarWidth, "px");
+  scrollingElement.style.overflow = "auto";
 };
 function getScrollbarWidth() {
-    var _a;
-    var outer = document.createElement('div');
-    outer.style.visibility = 'hidden';
-    outer.style.overflow = 'scroll';
-    document.body.appendChild(outer);
-    var inner = document.createElement('div');
-    outer.appendChild(inner);
-    var scrollbarWidth = (outer.offsetWidth - inner.offsetWidth);
-    (_a = outer === null || outer === void 0 ? void 0 : outer.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(outer);
-    return scrollbarWidth;
+  var _a;
+  var outer = document.createElement('div');
+  outer.style.visibility = 'hidden';
+  outer.style.overflow = 'scroll';
+  document.body.appendChild(outer);
+  var inner = document.createElement('div');
+  outer.appendChild(inner);
+  var scrollbarWidth = (outer.offsetWidth - inner.offsetWidth);
+  (_a = outer === null || outer === void 0 ? void 0 : outer.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(outer);
+  return scrollbarWidth;
 }
 
 var Backdrop = function (_a) {
-    var onClick = _a.onClick, _b = _a.style, style = _b === void 0 ? {} : _b, _c = _a.className, className = _c === void 0 ? "" : _c;
-    return (React.createElement("div", { onClick: onClick, "data-testid": "backdrop", className: clsx("BottomSheet__backdrop", className), style: style }));
+  var onClick = _a.onClick, _b = _a.style, style = _b === void 0 ? {} : _b, _c = _a.className, className = _c === void 0 ? "" : _c;
+  return (React.createElement("div", { onClick: onClick, "data-testid": "backdrop", className: clsx("BottomSheet__backdrop", className), style: style }));
 };
 var Backdrop$1 = memo(Backdrop);
 
 var DragIndicator = function (_a) {
-    var _b = _a.className, className = _b === void 0 ? {
-        wrap: "",
-        indicator: "",
-    } : _b, _c = _a.style, style = _c === void 0 ? {
-        wrap: {},
-        indicator: {},
-    } : _c;
-    return (React.createElement("div", { className: clsx("BottomSheet__drag-indicator-wrap", className.wrap), style: style.wrap },
-        React.createElement("div", { className: clsx("BottomSheet__drag-indicator", className.indicator), style: style.indicator })));
+  var _b = _a.className, className = _b === void 0 ? {
+    wrap: "",
+    indicator: "",
+  } : _b, _c = _a.style, style = _c === void 0 ? {
+    wrap: {},
+    indicator: {},
+  } : _c;
+  return (React.createElement("div", { className: clsx("BottomSheet__drag-indicator-wrap", className.wrap), style: style.wrap },
+    React.createElement("div", { className: clsx("BottomSheet__drag-indicator", className.indicator), style: style.indicator })));
 };
 var DragIndicator$1 = memo(DragIndicator);
 
 var useIsDesktop = function (desktopBreakpoint) {
-    return window.innerWidth >= desktopBreakpoint;
+  return window.innerWidth >= desktopBreakpoint;
 };
 
 function styleInject(css, ref) {
-  if ( ref === void 0 ) ref = {};
+  if (ref === void 0) ref = {};
   var insertAt = ref.insertAt;
 
   if (!css || typeof document === 'undefined') { return; }
@@ -113,73 +113,82 @@ var css_248z = ".BottomSheet {\n  position: fixed;\n  display: flex;\n  top: 0;\
 styleInject(css_248z);
 
 var UnderBody = function (_a) {
-    var children = _a.children;
-    var body = document.querySelector("body");
-    return createPortal(children, body);
+  var children = _a.children;
+  var body = document.querySelector("body");
+  return createPortal(children, body);
 };
+function useIsServer() {
+  var _a = useState(true), isServer = _a[0], setIsServer = _a[1];
+  useEffect(function () {
+    setIsServer(false);
+  }, [setIsServer]);
+  return isServer;
+}
 var BottomSheet = function (_a) {
-    var _b, _c, _d, _e;
-    var children = _a.children, isOpen = _a.isOpen, close = _a.close, onBackdropClick = _a.onBackdropClick, _f = _a.onDrag, onDrag = _f === void 0 ? function () { } : _f, _g = _a.onStart, onStart = _g === void 0 ? function () { } : _g, _h = _a.onMouseDown, onMouseDown = _h === void 0 ? function () { } : _h, _j = _a.modalOnDesktop, modalOnDesktop = _j === void 0 ? false : _j, _k = _a.desktopBreakpoint, desktopBreakpoint = _k === void 0 ? 1024 : _k, _l = _a.styles, styles = _l === void 0 ? {} : _l, _m = _a.disabled, disabled = _m === void 0 ? false : _m, _o = _a.classNames, classNames = _o === void 0 ? {
-        bottomSheet: "",
-        backdrop: "",
-        draggable: "",
-        window: {
-            wrap: "",
-            content: "",
-        },
-        dragIndicator: {
-            wrap: "",
-            indicator: "",
-        },
-    } : _o;
-    var isDesktop = useIsDesktop(desktopBreakpoint);
-    var _p = useState(), rect = _p[0], setRect = _p[1];
-    var ref = useCallbackRef(null, function (ref) {
-        setRect(ref === null || ref === void 0 ? void 0 : ref.getBoundingClientRect());
-    });
-    useEffect(function () {
-        if (isOpen)
-            lockBodyScroll();
-        else
-            setTimeout(function () { unlockBodyScroll(); }, 300); //.BottomSheet--closed transition-delay value
-    }, [isOpen]);
-    var onDragging = useCallback(function (event, data) {
-        onDrag(event, data);
-        if (ref === null || ref === void 0 ? void 0 : ref.current) {
-            ref.current.style.transition = "none";
-        }
-    }, [ref]);
-    var handleStopDragging = useCallback(function (_, _a) {
-        var _b;
-        var y = _a.y;
-        if (ref.current) {
-            ref.current.style.transition = "transform 0.3s ease-in-out";
-            var elementHeight = ((_b = ref.current) === null || _b === void 0 ? void 0 : _b.offsetHeight) | 0;
-            var elementHeightHalf = elementHeight / 2;
-            var shouldClose = y > elementHeightHalf;
-            if (shouldClose)
-                close();
-        }
-    }, [ref]);
-    var position = useMemo(function () {
-        return {
-            x: 0,
-            y: isOpen ? 0 : (rect === null || rect === void 0 ? void 0 : rect.height) || 10000,
-        };
-    }, [isOpen, rect]);
-    if (!isOpen)
-        return null;
-    return (React.createElement(UnderBody, null,
-        React.createElement("div", { className: clsx("BottomSheet", isOpen ? "BottomSheet--open" : "BottomSheet--closed", modalOnDesktop && isDesktop && "BottomSheet--modalOnDesktop", classNames.bottomSheet), style: styles.bottomSheet },
-            React.createElement(Backdrop$1, { onClick: function (event) {
-                    if (onBackdropClick)
-                        onBackdropClick(event);
-                    close();
-                }, className: classNames.backdrop, style: styles.backdrop }),
-            React.createElement(Draggable, { axis: "y", bounds: __assign({ top: 0 }, (isDesktop && modalOnDesktop && { bottom: 0 })), position: position, defaultClassName: clsx("BottomSheet__draggable", classNames.draggable), onStop: handleStopDragging, onDrag: onDragging, onMouseDown: onMouseDown, onStart: onStart, disabled: disabled, nodeRef: ref },
-                React.createElement("div", { ref: ref, className: clsx("BottomSheet__window-wrap", (_b = classNames.window) === null || _b === void 0 ? void 0 : _b.wrap), style: (_c = styles.window) === null || _c === void 0 ? void 0 : _c.wrap },
-                    !(modalOnDesktop && isDesktop) && (React.createElement(DragIndicator$1, { className: classNames === null || classNames === void 0 ? void 0 : classNames.dragIndicator, style: styles.dragIndicator })),
-                    React.createElement("div", { className: clsx("BottomSheet__window", (_d = classNames.window) === null || _d === void 0 ? void 0 : _d.content), style: (_e = styles.window) === null || _e === void 0 ? void 0 : _e.content }, children))))));
+  var _b, _c, _d, _e;
+  var children = _a.children, isOpen = _a.isOpen, close = _a.close, onBackdropClick = _a.onBackdropClick, _f = _a.onDrag, onDrag = _f === void 0 ? function () { } : _f, _g = _a.onStart, onStart = _g === void 0 ? function () { } : _g, _h = _a.onMouseDown, onMouseDown = _h === void 0 ? function () { } : _h, _j = _a.modalOnDesktop, modalOnDesktop = _j === void 0 ? false : _j, _k = _a.desktopBreakpoint, desktopBreakpoint = _k === void 0 ? 1024 : _k, _l = _a.styles, styles = _l === void 0 ? {} : _l, _m = _a.disabled, disabled = _m === void 0 ? false : _m, _o = _a.classNames, classNames = _o === void 0 ? {
+    bottomSheet: "",
+    backdrop: "",
+    draggable: "",
+    window: {
+      wrap: "",
+      content: "",
+    },
+    dragIndicator: {
+      wrap: "",
+      indicator: "",
+    },
+  } : _o;
+  var isDesktop = useIsDesktop(desktopBreakpoint);
+  var _p = useState(), rect = _p[0], setRect = _p[1];
+  var ref = useCallbackRef(null, function (ref) {
+    setRect(ref === null || ref === void 0 ? void 0 : ref.getBoundingClientRect());
+  });
+  useEffect(function () {
+    if (isOpen)
+      lockBodyScroll();
+    else
+      setTimeout(function () { unlockBodyScroll(); }, 300); //.BottomSheet--closed transition-delay value
+  }, [isOpen]);
+  var onDragging = useCallback(function (event, data) {
+    onDrag(event, data);
+    if (ref === null || ref === void 0 ? void 0 : ref.current) {
+      ref.current.style.transition = "none";
+    }
+  }, [ref]);
+  var handleStopDragging = useCallback(function (_, _a) {
+    var _b;
+    var y = _a.y;
+    if (ref.current) {
+      ref.current.style.transition = "transform 0.3s ease-in-out";
+      var elementHeight = ((_b = ref.current) === null || _b === void 0 ? void 0 : _b.offsetHeight) | 0;
+      var elementHeightHalf = elementHeight / 2;
+      var shouldClose = y > elementHeightHalf;
+      if (shouldClose)
+        close();
+    }
+  }, [ref]);
+  var position = useMemo(function () {
+    return {
+      x: 0,
+      y: isOpen ? 0 : (rect === null || rect === void 0 ? void 0 : rect.height) || 10000,
+    };
+  }, [isOpen, rect]);
+  if (useIsServer())
+    return null;
+  return (React.createElement(UnderBody, null,
+    React.createElement("div", { className: clsx("BottomSheet", isOpen ? "BottomSheet--open" : "BottomSheet--closed", modalOnDesktop && isDesktop && "BottomSheet--modalOnDesktop", classNames.bottomSheet), style: styles.bottomSheet },
+      React.createElement(Backdrop$1, {
+        onClick: function (event) {
+          if (onBackdropClick)
+            onBackdropClick(event);
+          close();
+        }, className: classNames.backdrop, style: styles.backdrop
+      }),
+      React.createElement(Draggable, { axis: "y", bounds: __assign({ top: 0 }, (isDesktop && modalOnDesktop && { bottom: 0 })), position: position, defaultClassName: clsx("BottomSheet__draggable", classNames.draggable), onStop: handleStopDragging, onDrag: onDragging, onMouseDown: onMouseDown, onStart: onStart, disabled: disabled, nodeRef: ref },
+        React.createElement("div", { ref: ref, className: clsx("BottomSheet__window-wrap", (_b = classNames.window) === null || _b === void 0 ? void 0 : _b.wrap), style: (_c = styles.window) === null || _c === void 0 ? void 0 : _c.wrap },
+          !(modalOnDesktop && isDesktop) && (React.createElement(DragIndicator$1, { className: classNames === null || classNames === void 0 ? void 0 : classNames.dragIndicator, style: styles.dragIndicator })),
+          React.createElement("div", { className: clsx("BottomSheet__window", (_d = classNames.window) === null || _d === void 0 ? void 0 : _d.content), style: (_e = styles.window) === null || _e === void 0 ? void 0 : _e.content }, children))))));
 };
 var BottomSheet$1 = memo(BottomSheet);
 
